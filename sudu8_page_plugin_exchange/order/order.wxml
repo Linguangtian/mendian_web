@@ -1,0 +1,26 @@
+<!--源码A社区社区：www.aaxcx.cn   time:2018-09-26 11:40:11 -->
+<import  src="/sudu8_page_plugin_exchange/sudu8_page/templates/common.wxml"  />
+<view>
+	<block wx:for="{{orderlist}}" wx:for-item="item" wx:for-index="index" >
+		<view class="qxiq">
+			<view class="thumbdx">
+				<image src="{{item.thumb}}"></image>
+			</view>
+			<view class="jbxx">
+				<view class="bbts">{{item.product}} -{{item.price}}积分</view>
+				<view class="zts">订单编号：{{item.order_id}}</view>
+				<view class="zts">兑换时间： {{item.creattime}}</view>
+				<block wx:if="{{item.flag==0}}">
+					<view class="piaos" style="color:#FF4544">待领取</view>
+				</block>
+				<block wx:if="{{item.flag==1}}">
+					<view class="piaos">已兑换</view>
+				</block>
+			</view>
+		</view>
+	</block>
+</view>
+<template  data="{{...baseinfo}}" is="copyright" />
+<block wx:if="{{baseinfo.tabbar_t==1}}">
+	<template  data="{{...baseinfo,page_signs:page_signs}}" is="footer" />
+</block>

@@ -1,0 +1,32 @@
+<!--源码A社区社区：www.aaxcx.cn   time:2018-09-26 11:40:20 -->
+<import  src="/sudu8_page/templates/common.wxml"  />
+<view class="bg_f mb10">
+	<view class="selectarea">
+		<dl class="menu">
+			<block wx:for="{{menuContent}}" wx:for-item="value" wx:for-index="index" >
+				<dt bindtap="tapMainMenu" class="{{menuCss[index]}} btnarea" data-index="{{index}}">
+					<text class="textarea greycolor">{{value.title}}</text>
+					<image class="{{rotateRight[index]}} icon-img" src="/images/icon-arrowdown.png"></image>
+				</dt>
+			</block>
+			<block wx:if="{{showMenu}}">
+				<dd class="font-sm">
+					<ul>
+						<block wx:for="{{content}}" wx:for-item="valuec" wx:for-index="indexc" >
+							<li bindtap="tapSubMenu" class="font-xs" data-index="{{indexc}}">{{valuec}}</li>
+						</block>
+					</ul>
+				</dd>
+			</block>
+		</dl>
+	</view>
+	<block wx:for="{{shopList}}" wx:key="item.kms" wx:for-item="item" wx:for-index="index" >
+		<view class="storeList">
+			<template  data="{{item:item,...baseinfo,...footer}}" is="storeList" />
+		</view>
+	</block>
+</view>
+<template  data="{{...baseinfo}}" is="copyright" />
+<block wx:if="{{baseinfo.tabbar_t==1}}">
+	<template  data="{{...baseinfo,page_sign:page_sign}}" is="footer" />
+</block>

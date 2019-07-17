@@ -1,0 +1,59 @@
+<!--源码A社区社区：www.aaxcx.cn   time:2018-09-26 11:40:16 -->
+<import  src="/sudu8_page_plugin_pt/sudu8_page_plugin_pt/templates/common.wxml"  />
+<view class="bg_f mb10">
+	<view class="row_box">
+		<view class="row_bt">订单编号：</view>
+		<view class="row_bc">{{comment.order_id}}</view>
+	</view>
+</view>
+<view class="bg_f mb10 pd10">
+	<view class="row_box">
+		<view class="row_bt">订单金额：</view>
+		<view class="row_bc">¥{{comment.price}}</view>
+	</view>
+	<view class="row_box">
+		<view class="row_bt">运费：</view>
+		<view class="row_bc">¥{{yf}}</view>
+	</view>
+	<view class="row_box">
+		<view class="row_bt">账户余额：</view>
+		<view class="row_bc">¥{{comment.mymoney}}</view>
+	</view>
+	<view class="row_box">
+		<view class="row_bt">优惠券已抵扣：</view>
+		<view class="row_bc">¥{{comment.mycoupon}}</view>
+	</view>
+	<view class="row_box">
+		<view class="row_bt">积分已抵扣：</view>
+		<view class="row_bc">¥{{dkmoney}}  (积分:{{dkscore}})</view>
+	</view>
+</view>
+<view class="bg_f mb10 pd10">
+	<block wx:if="{{true_money==0}}" >
+		<view class="row_box mt10">
+			<view class="row_bt">最终付款：</view>
+			<view class="row_bc">
+				<text>¥{{true_price}}</text>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="row_box">
+			<view class="row_bt">需{{kouk==1?'微信':'余额'}}付款：</view>
+			<view class="row_bc">¥{{true_price}}</view>
+		</view>
+	</block>
+</view>
+<form bindsubmit="pay3" reportSubmit="true">
+	<block wx:if="{{kouk==1}}">
+		<button class="bbbt" formType="submit">微信支付</button>
+	</block>
+</form>
+<form bindsubmit="pay1" reportSubmit="true">
+	<block wx:if="{{kouk==0}}">
+		<button class="bbbt" formType="submit">余额支付</button>
+	</block>
+</form>
+<block wx:if="{{baseinfo.tabbar_t==1}}">
+	<template  data="{{...baseinfo}}" is="footer" />
+</block>
